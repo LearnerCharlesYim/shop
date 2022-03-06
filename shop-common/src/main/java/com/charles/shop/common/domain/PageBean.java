@@ -10,9 +10,11 @@ public class PageBean<T> {
 
     private Integer currentPage;
 
-    private Integer total;
+    private Long total;
 
     private Integer pages;
+
+    private Integer pageSize;
 
     private List<T> content;
 
@@ -20,8 +22,9 @@ public class PageBean<T> {
         PageBean<T> result = new PageBean<>();
         result.setPages(pageInfo.getTotalPages());
         result.setCurrentPage(pageInfo.getNumber() + 1);
-        result.setTotal((int) pageInfo.getTotalElements());
+        result.setTotal(pageInfo.getTotalElements());
         result.setContent(pageInfo.getContent());
+        result.setPageSize(pageInfo.getSize());
         return result;
     }
 }

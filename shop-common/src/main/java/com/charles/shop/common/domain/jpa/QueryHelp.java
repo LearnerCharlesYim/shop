@@ -14,6 +14,7 @@ import java.util.List;
 @Slf4j
 @SuppressWarnings({"unchecked", "all"})
 public class QueryHelp {
+
     public static <R, Q> Predicate getPredicate(Root<R> root, Q query, CriteriaBuilder cb) {
         List<Predicate> list = new ArrayList<>();
         if (query == null) {
@@ -144,8 +145,7 @@ public class QueryHelp {
         } catch (Exception e) {
             log.error(e.getMessage(), e);
         }
-        int size = list.size();
-        return cb.and(list.toArray(new Predicate[size]));
+        return cb.and(list.toArray(new Predicate[list.size()]));
     }
 
     private static <T, R> Expression<T> getExpression(String attributeName, Join join, Root<R> root) {
